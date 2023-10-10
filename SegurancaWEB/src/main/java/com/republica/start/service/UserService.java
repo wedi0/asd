@@ -44,7 +44,7 @@ public class UserService {
 
 		Enconder password = new Enconder();
 		
-		user.setPassword(password.ecnode(user.getPassword()));
+		user.setPassword(password.encode(user.getPassword()));
 		
 		return userRepository.save(user);
 
@@ -56,7 +56,7 @@ public class UserService {
 		    if (user != null) {
 				Enconder cripto = new Enconder();
 
-		        String key2 = cripto.deecnode(user.getPassword());
+		        String key2 = cripto.decode(user.getPassword());
 		        
 		        if(password.equals(key2)) {
 		        	return user;

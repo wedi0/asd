@@ -66,7 +66,7 @@ public class Ronaldo {
 		}
 	
 		 @GetMapping("/login")
-		    public ResponseEntity<String> login(
+		 public ResponseEntity<String> login(
 		            @RequestParam(name = "username") String username,
 		            @RequestParam(name = "password") String password) throws Exception {
 
@@ -74,9 +74,11 @@ public class Ronaldo {
 		        // Em um ambiente de produção, você deve usar HTTPS para maior segurança.
 
 		        if (userService.logar(username, password) != null) {
-		            return ResponseEntity.ok().body("Login bem-sucedido!");
+		            // Retorne uma resposta JSON com a mensagem de sucesso
+		            return ResponseEntity.ok().body("{\"message\": \"Login bem-sucedido!\"}");
 		        } else {
-		            return ResponseEntity.ok().body("Login mal-sucedido!");
+		            // Retorne uma resposta JSON com a mensagem de erro
+		            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"message\": \"Login mal-sucedido!\"}");
 		        }
 		    }
 }
